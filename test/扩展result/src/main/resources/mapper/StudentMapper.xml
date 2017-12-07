@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.StudentMapper">
+    <resultMap type="entity.Address" id="AddressResult">
+        <id property="addrId" column="addr_id" />
+        <result property="street" column="street" />
+        <result property="city" column="city" />
+        <result property="state" column="state" />
+        <result property="zip" column="zip" />
+        <result property="country" column="country" />
+    </resultMap>
+    <resultMap type="Student" id="StudentResult">
+        <id property="studId" column="stud_id" />
+        <result property="name" column="name" />
+        <result property="email" column="email" />
+        <result property="dob" column="dob" />
+        <association property="address" resultMap="AddressResult"/>
+    </resultMap>
+    <select id="findStudentById" parameterType="int" resultMap="StudentResult">
+        SELECT stud_id,name,email,dob,A.addr_id,street,city,state,zip,country
+        FROM students S LEFT JOIN addresses A ON s.addr_id=A.addr_id WHERE stud_id=#{id}
+    </select>
+</mapper>
