@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Computing interface</title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="css/mystyle.css">
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+</head>
+<body>
+	<div id="container">
+		<div  class="top" >	
+			<img class="imgtop" src="images/top.jpg" >
+			<h1 >Four elementary programs in primary school</h1>
+			<select name="select" language=javascript onchange= "location.href=this.value" class="selectLanguage" class="form-control">
+				  <option value= "English">English</option>
+				  <option value ="Cal.html " >中文</option>
+			</select>
+		</div>
+			<input type="radio" name="radio-set"  id="st-control-1" checked="checked" value="出题">	
+			<a href="#st-panel-1"> make out questions</a>
+			<input type="radio" name="radio-set"  id="st-control-2" value="答题" ">
+			<a href="#st-panel-2" >make out questions</a>	
+		<div class="st-scroll">
+			<section class="st-panel" id="st-panel-1">
+				<div class="one">
+			<form action="#" method="post">
+			<h1>ssss</h1>
+			<table style="width: 920px;height: 360px;margin:0 auto; margin-top:30px;" class="table  table-bordered table-hover" >
+		
+			<tr  class="info" style="height: 60px;">
+				<td  style=" height: 60px;width: 100px;">
+					Number of questions
+				</td>
+				<td style="width: 250px;">
+					<input type="text" name="sumOfTest">
+				</td>
+			</tr>
+			<tr class="success" style="height: 60px;">
+				<td>Scope of the questions</td>
+				<td><input class="range" type="text" name="lower">
+				-----
+				<input class="range"  type="text" name="upper"></td>
+						
+				
+			</tr>
+			<tr class="info" style="height: 60px;">
+					<td>Operator number</td>	
+					<td>
+						<select class="form-control" name="sumOfOperation">
+							<option value ="1" selected = "selected">1</option>
+							<option value ="2">2</option>
+							<option value="3">3</option>
+							<option value="4">4</option>
+							<option value ="5">5</option>
+							<option value ="6">6</option>
+							<option value="7">7</option>
+							<option value="8">8</option>
+							<option value="9">9</option>
+							<option value="10">10</option>
+						</select>
+					</td>
+			</tr>
+			<tr class="success" style="height: 60px;">
+				
+					<td>Is there a multiplication and division</td>
+				<td>
+					&nbsp;&nbsp;
+					<input type="radio" name="mul_div" value="yes"/>yes 
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					<input type="radio" name="mul_div" value="no"  checked="checked" />no
+				</td>		
+			</tr>
+			<tr class="info" style="height: 60px;">
+					
+				<td>Is there a parenthesis</td>
+				<td>
+					&nbsp;&nbsp;
+					<input type="radio" name="bracket" value="yes"/>yes 
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					<input type="radio" name="bracket" value="no"  checked="checked" />no 
+				</td>	
+			</tr>
+	</table>
+		<input type="submit" style="margin-left: 550px;" name="printTest" class="btn-lg btn-info printTest" value="print the questions" ">
+		 </form>
+					
+				</div>
+	 		</section>
+	 		<section class="st-panel" id="st-panel-2">
+				<div class="two">
+					<form action="#" method="post">
+					<ul style="position: absolute;bottom: 380px; left: 160px; list-style-type: none">			
+					
+							<input type="button" name="btn" class="btn-lg btn-info" onclick="startclock() "  value="Starting to work">
+							<input type="button" name="btn" class="btn-lg btn-info" value="Suspend the answer" onclick="pauseclock()">
+							<input type="button" name="btn" class="btn-lg btn-info" onclick="stopclock()" value="Stop answering question">
+							<input class="btn"  name="showtime" style="color:#ff0000;width:200px;height: 48px;font-size: 20px;" id="showtime" type="text" value="0h0m0s">
+					</ul>
+					<textarea  style="position: absolute;bottom: 170px; left: 200px;overflow: scroll;" rows="6" cols="47">
+						ssssssssssssssssssssssssssssssssssssssssssssssssss
+					</textarea>
+					<input type="submit" name="submitAnswer" value="submit the answers" class="btn-lg btn-info" style="position: absolute;bottom: 100px; left: 380px;">
+			</form>
+				</div>
+				<!-- <form action="#" method="post">
+
+					<input id="inputFile"  style="position: absolute;left: 80px;top: 100px; opacity: 0.1;display:none" type="file" name="fileUpload" onchange="changeAgentContent() " value="请择你要上传的文件" />
+
+					<input style="position: absolute;left: 80px;top: 100px; "  type="text" value="" disabled id="inputFileAgent" />
+					<input style="position: absolute;left: 80px;top: 100px; " type="button" onclick="document.getElementById('inputFile').click()" value="Browse..." />
+					<input style="position: absolute;left: 380px;top: 90px; "  type="submit" value="Upload a file" class="btn-lg btn-info" />
+				</form> -->
+				<p class="p1">You've got <input class="time"  type="text" name="rightAnswer"> questions right</p>
+				<p class="p2">In total
+				<input id="one" class="time" type="text" name="timeHour">h
+				<input id="two" type="text" class="time" name="timeMin">m
+				<input id="three" class="time" type="text" name="timeSec">s
+				</p>
+				</form>
+	 		</section>
+	 	</div>
+
+	</div>
+</body>
+<script language="javascript">
+	var se,m=0,h=0,s=0,ss=1;
+	function second(){
+	if((ss%100)==0){s+=1;ss=1;}
+	if(s>0 && (s%60)==0){m+=1;s=0;}
+	if(m>0 && (m%60)==0){h+=1;m=0;}
+	t=h+"时"+m+"分"+s+"秒"+ss+"毫秒";
+	document.getElementById("showtime").value=t;
+	ss+=1;
+	document.getElementById("one").value=h;
+	document.getElementById("two").value=m;
+	document.getElementById("three").value=s;
+}
+function startclock(){se=setInterval("second()",10);}
+function pauseclock(){clearInterval(se);}
+function stopclock(){clearInterval(se);ss=1;m=h=s=0;}
+function changeAgentContent(){
+        document.getElementById("inputFileAgent").value = document.getElementById("inputFile").value;
+    }
+</script>
+</html>
+
+
+
